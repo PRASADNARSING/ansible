@@ -1,0 +1,6 @@
+-name:PING
+hosts: Web
+tasks:
+  -name:ping the server
+  ansible.builtin.ping:
+    msg: "Hello world"
