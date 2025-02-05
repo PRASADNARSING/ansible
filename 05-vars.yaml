@@ -5,7 +5,7 @@
     COURSES: "Devops with AWS"
     DURATION: 120HRS
     TRAINER: Sivakumar
-
+  tasks:
   - name: Print the variables
     vars: # task level variables
       COURSES: Ansible
