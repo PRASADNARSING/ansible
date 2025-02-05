@@ -1,7 +1,13 @@
-- name: install and run ngnix
+- name: Install and Run Nginx
   hosts: Web
-  become: yes # -b become root access, like sudo
+  become: yes # Root access (like sudo)
   tasks:
+    - name: Stop Apache if running (to prevent conflicts)
+      ansible.builtin.service:
+        name: httpd
+        state: stopped
+      ignore_errors: yes
+
     - name: Install Nginx
       ansible.builtin.dnf:
         name: nginx
@@ -12,13 +18,4 @@
       ansible.builtin.service:
         name: nginx
         state: started
-        enabled: yes # updates the status and enbling it
-
-    - name: start the ngnix service
-      ansible.builtin.service:
-        name: ngnix
-        state: restarted
-    - name: Reload service httpd, in all cases
-      ansible.builtin.service:
-        name: httpd
-        state: reloaded 
+        enabled: yes
