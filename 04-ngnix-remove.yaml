@@ -1,0 +1,44 @@
+- name: Clean up Nginx service
+  hosts: Web
+  become: yes
+  tasks:
+    - name: Stop Nginx service
+      ansible.builtin.service:
+        name: nginx
+        state: stopped
+      ignore_errors: yes
+
+    - name: Disable Nginx service at boot
+      ansible.builtin.systemd:
+        name: nginx
+        enabled: no
+      ignore_errors: yes
+
+    - name: Remove Nginx package
+      ansible.builtin.dnf:
+        name: nginx
+        state: absent
+
+    - name: Remove Nginx configuration files
+      ansible.builtin.file:
+        path: "/etc/nginx"
+        state: absent
+      ignore_errors: yes
+
+    - name: Clean up Nginx logs
+      ansible.builtin.file:
+        path: "/var/log/nginx"
+        state: absent
+      ignore_errors: yes
+
+    - name: Remove Nginx user and group (optional)
+      ansible.builtin.user:
+        name: nginx
+        state: absent
+      ignore_errors: yes
+
+    - name: Remove Nginx temp directory (optional)
+      ansible.builtin.file:
+        path: "/var/cache/nginx"
+        state: absent
+      ignore_errors: yes
