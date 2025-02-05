@@ -1,0 +1,38 @@
+- name: Install and Run Nginx
+  hosts: Web
+  become: yes
+  tasks:
+    - name: Stop Apache if running (to prevent conflicts)
+      ansible.builtin.service:
+        name: httpd
+        state: stopped
+      ignore_errors: yes
+
+    - name: Disable Apache service (to prevent it from starting at boot)
+      ansible.builtin.systemd:
+        name: httpd
+        enabled: no
+      ignore_errors: yes
+
+    - name: Install Nginx
+      ansible.builtin.dnf:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Start and Enable Nginx Service
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
+      ignore_errors: yes
+
+    - name: Check Nginx service status for debugging
+      ansible.builtin.shell:
+        cmd: systemctl status nginx.service
+      register: nginx_status
+      ignore_errors: yes
+
+    - name: Show Nginx service status
+      ansible.builtin.debug:
+        var: nginx_status
