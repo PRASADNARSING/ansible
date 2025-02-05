@@ -1,10 +1,8 @@
-- name: variables
+- name: variables from files
   hosts: local
   connection: local
-  vars:
-    COURSES: "Devops with AWS"
-    DURATION: 120HRS
-    TRAINER: Sivakumar
+  vars_files:
+  - vars.yaml
   tasks:
   - name: Print the variables
     vars: # task level variables can overwrite at variables
