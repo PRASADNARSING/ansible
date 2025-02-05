@@ -3,4 +3,5 @@
   tasks:
   - name: print hello world
     ansible.builtin.debug:
-      msg: "Hello World"
+      msg: "Hello World" # spaces are mandatory to main in the ansible-playbook
+      

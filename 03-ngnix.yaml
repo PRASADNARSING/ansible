@@ -1,0 +1,9 @@
+- name: install and run ngnix
+  hosts: Web
+  become: yes # -b become root access, like sudo
+  tasks:
+  - name: Install ngnix
+    ansible.builtin.packges:
+      name: ngnix
+      state: present
+      enabled: yes
