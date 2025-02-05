@@ -13,3 +13,12 @@
         name: nginx
         state: started
         enabled: yes # updates the status and enbling it
+
+    - name: start the ngnix service
+      ansible.builtin.service:
+        name: ngnix
+        state: restarted
+    - name: Reload service httpd, in all cases
+      ansible.builtin.service:
+        name: httpd
+        state: reloaded 
