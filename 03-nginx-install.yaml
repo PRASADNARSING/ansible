@@ -1,5 +1,5 @@
 - name: Install nginx and start enbling
-  hosts: Web
+  hosts: web
   become: yes #-b become root user like sudo 
   tasks: 
   - name: Install nginx
