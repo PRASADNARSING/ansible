@@ -1,24 +1,25 @@
-- name: loops
+---
+- name: Loops Example 1
   hosts: local
   connection: local
   tasks:
-  - name: print names
-    ansible.builtin.debug:
-      msg: "Hello {{ item }}"
-    loop:
-    - Ramesh
-    - Suresh
-    - Hareesh
+    - name: Print names (Set 1)
+      ansible.builtin.debug:
+        msg: "Hello {{ item }}"
+      loop:
+        - Ramesh
+        - Suresh
+        - Hareesh
 
-
-- name: loops
+- name: Loops Example 2
   hosts: local
   connection: local
   tasks:
-  - name: print names
-  ansible.builtin.debug:
-    msg: "Hello {{ item }}"
-  loop: 
-  - shashi
-  - bhavani
-  - mounika
+    - name: Print names (Set 2)
+      ansible.builtin.debug:
+        msg: "Hello {{ item }}"
+      loop:
+        - shashi
+        - bhavani
+        - mounika
+        
