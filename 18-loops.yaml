@@ -1,7 +1,6 @@
 - name: Install Packages
   hosts:
   - web_servers
-  - servers
   become: yes
   tasks:
     - name: Install required packages
