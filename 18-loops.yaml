@@ -1,6 +1,5 @@
 - name: Install Packages
-  hosts:
-  - web_servers
+  hosts: web_servers
   become: yes
   tasks:
     - name: Install required packages
@@ -9,7 +8,5 @@
         state: present
       loop:
         - nginx
-        - gcc
         - git
         - zip
-        - mysql
