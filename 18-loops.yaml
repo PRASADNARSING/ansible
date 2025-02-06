@@ -2,13 +2,13 @@
   hosts: web_servers
   become: yes
   tasks:
-    - name: Install packages
+    - name: Install required packages
       ansible.builtin.yum:
         name: "{{ item }}"
-        state: Installed
+        state: present
       loop:
-      - nginx
-      - gcc
-      - git
-      - zip
-      - mysql
+        - nginx
+        - gcc
+        - git
+        - zip
+        - mysql
